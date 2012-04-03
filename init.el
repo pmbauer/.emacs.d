@@ -7,7 +7,7 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-(defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings undo-tree clojure-mode midje-mode))
+(defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings undo-tree clojure-mode midje-mode color-theme-solarized))
 (dolist (p my-packages)
   (when (not (package-installed-p p))
     (package-install p)))
@@ -31,7 +31,8 @@
 (eval-after-load "color-theme"
   '(progn
      (color-theme-initialize)
-     (color-theme-xemacs)))
+     (color-theme-solarized-light)
+     ))
 (set-default-font "Consolas-11")
 (blink-cursor-mode)
 
