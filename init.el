@@ -28,11 +28,14 @@
 
 ;; visual
 (require 'color-theme)
-(eval-after-load "color-theme"
-  '(progn
-     (color-theme-initialize)
-     (color-theme-solarized-light)
-     ))
+
+(if window-system
+  (eval-after-load "color-theme"
+                   '(progn
+                      (color-theme-initialize)
+                      (color-theme-solarized-light)
+                      )))
+
 (set-default-font "Consolas-11")
 (blink-cursor-mode)
 
@@ -103,3 +106,11 @@
 
 ;; clojure related
 (require 'slamhound)
+
+(setq path-to-ctags "/usr/bin/ctags")
+(defun create-clj-tags (dir-name)
+  "Create tags file."
+  (interactive "Directory: ")
+  (shell-command
+   (format "%s --langmap=Lisp:+.clj --regex-Lisp='/[ \t\(]*def[a-z]* \([a-z!-]+\)/\1/'  --regex-Lisp='/[ \t\(]*ns \([a-z.]+\)/\1/' -f %s/TAGS -e -R %s" path-to-ctags dir-name (directory-file-name dir-name))))
+
