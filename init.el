@@ -29,14 +29,13 @@
 ;; visual
 (require 'color-theme)
 
-(if window-system
-  (eval-after-load "color-theme"
-                   '(progn
-                      (color-theme-initialize)
-                      (color-theme-solarized-light)
-                      )))
+(eval-after-load "color-theme"
+  '(progn
+     (color-theme-initialize)
+     (color-theme-solarized-light)
+     ))
 
-(set-default-font "Consolas-11")
+(set-default-font "Monospace-10")
 (blink-cursor-mode)
 
 (if window-system
