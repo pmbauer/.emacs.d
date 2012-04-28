@@ -103,9 +103,6 @@
 ;; setup dired+
 (require 'dired+)
 
-;; cccp collaboration
-(require 'cccp)
-
 ;; clojure related
 (require 'slamhound)
 
