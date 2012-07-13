@@ -36,7 +36,7 @@
 (eval-after-load "color-theme"
   '(progn
      (color-theme-initialize)
-     ;(color-theme-solarized-light)
+     (color-theme-solarized-light)
      ))
 
 (set-default-font "Monospace-10")
