@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads (find-file-in-project) "find-file-in-project" "find-file-in-project.el"
-;;;;;;  (20187 60418))
+;;;;;;  (20500 20695 891329 392000))
 ;;; Generated autoloads from find-file-in-project.el
 
 (autoload 'find-file-in-project "find-file-in-project" "\
@@ -32,8 +32,8 @@ setting the variable `ffip-project-root'.
 
 ;;;***
 
-;;;### (autoloads nil nil ("find-file-in-project-pkg.el") (20187
-;;;;;;  60418 191315))
+;;;### (autoloads nil nil ("find-file-in-project-pkg.el") (20500
+;;;;;;  20695 899918 269000))
 
 ;;;***
 

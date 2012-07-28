@@ -7,7 +7,7 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-(defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings slime slime-repl undo-tree clojure-mode midje-mode color-theme-solarized))
+(defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings slime slime-repl undo-tree clojure-mode clojure-test-mode color-theme-solarized))
 (dolist (p my-packages)
   (when (not (package-installed-p p))
     (package-install p)))
