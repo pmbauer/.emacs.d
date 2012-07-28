@@ -21,6 +21,7 @@
 
 ;; lonopair
 (require 'lonopair)
+(require 'lono-slime-extensions)
 
 ;; evil mode
 (require 'evil)
