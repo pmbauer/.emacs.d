@@ -40,7 +40,7 @@
      (color-theme-solarized-light)
      ))
 
-(set-default-font "Monospace-10")
+(set-default-font "Anonymous Pro-11")
 (blink-cursor-mode)
 
 (if window-system
