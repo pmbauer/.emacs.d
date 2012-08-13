@@ -112,3 +112,4 @@
 
 ;; clojure related
 (require 'slamhound)
+(setq auto-mode-alist (cons '("\\.txn$" . clojure-mode) auto-mode-alist))
