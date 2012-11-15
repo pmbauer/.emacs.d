@@ -12,6 +12,7 @@ url/cookies
 thumbs/*
 oddmuse/*
 .newsrc-dribble
+.smex-items
 .nnmail-cache
 /#.newsrc-dribble#
 .svn
