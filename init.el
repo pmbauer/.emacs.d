@@ -7,7 +7,7 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-(defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings slime slime-repl undo-tree clojure-mode clojure-test-mode color-theme-solarized))
+(defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings slime slime-repl undo-tree clojure-mode clojure-test-mode color-theme-solarized haskell-mode nrepl))
 (dolist (p my-packages)
   (when (not (package-installed-p p))
     (package-install p)))
@@ -27,9 +27,12 @@
 (require 'evil)
 (evil-mode 1)
 (define-key evil-normal-state-map (kbd "M-]") 'find-tag)
-(define-key evil-normal-state-map (kbd "M-,") 'slime-pop-find-definition-stack)
-(define-key evil-normal-state-map (kbd "M-.") 'slime-edit-definition)
-(define-key evil-normal-state-map (kbd "C-x M-x") 'slime-send-dwim)
+(define-key evil-normal-state-map (kbd "M-,") 'nrepl-jump-back)
+(define-key evil-normal-state-map (kbd "M-.") 'nrepl-jump)
+;(define-key evil-normal-state-map (kbd "C-x M-x") 'slime-send-dwim)
+
+;; nrepl
+;(setq nrepl-popup-stacktraces nil)
 
 ;; visual
 (require 'color-theme)
@@ -40,7 +43,7 @@
      (color-theme-solarized-light)
      ))
 
-(set-default-font "Anonymous Pro-11")
+(set-default-font "Ubuntu Mono-11")
 (blink-cursor-mode)
 
 (if window-system
@@ -113,3 +116,6 @@
 ;; clojure related
 (require 'slamhound)
 (setq auto-mode-alist (cons '("\\.txn$" . clojure-mode) auto-mode-alist))
+
+;; elm related
+(setq auto-mode-alist (cons '("\\.elm$" . haskell-mode) auto-mode-alist))
