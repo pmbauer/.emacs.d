@@ -27,9 +27,11 @@
 (require 'evil)
 (evil-mode 1)
 (define-key evil-normal-state-map (kbd "M-]") 'find-tag)
-(define-key evil-normal-state-map (kbd "M-,") 'nrepl-jump-back)
-(define-key evil-normal-state-map (kbd "M-.") 'nrepl-jump)
-;(define-key evil-normal-state-map (kbd "C-x M-x") 'slime-send-dwim)
+;(define-key evil-normal-state-map (kbd "M-,") 'nrepl-jump-back)
+;(define-key evil-normal-state-map (kbd "M-.") 'nrepl-jump)
+(define-key evil-normal-state-map (kbd "M-,") 'slime-pop-find-definition-stack)
+(define-key evil-normal-state-map (kbd "M-.") 'slime-edit-definition)
+(define-key evil-normal-state-map (kbd "C-x M-x") 'slime-send-dwim)
 
 ;; nrepl
 ;(setq nrepl-popup-stacktraces nil)
