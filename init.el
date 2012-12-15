@@ -7,7 +7,7 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-(defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings slime slime-repl undo-tree clojure-mode color-theme-solarized haskell-mode nrepl))
+(defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings slime slime-repl undo-tree clojure-mode clojure-test-mode color-theme-solarized haskell-mode nrepl))
 (dolist (p my-packages)
   (when (not (package-installed-p p))
     (package-install p)))
@@ -117,11 +117,6 @@
 
 ;; setup revive
 (require 'revive)
-
-;; setup clojure-test-mode compatible with nrepl
-;; remove when clojure-mode is updated on elpa
-(require 'clojure-test-mode)
-(require 'clojure-mode)
 
 ;; clojure related
 (require 'slamhound)
