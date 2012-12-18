@@ -56,65 +56,65 @@
 (set-default-font "Ubuntu Mono-11")
 (blink-cursor-mode)
 
-(if window-system
-    (progn  ; Non-terminal adjustments
-      )
-
-  (progn    ; Terminal adjustments
-    ;; The light colored hl-line is fine for GUI emacs but
-    ;; makes
-    ;; it impossible to read things in a white-on-black
-    ;; terminal
-    (defadvice hl-line-mode (after
-                             abrooks-advise-hl-line-mode
-                             activate compile)
-      (set-face-background hl-line-face "white"))
-
-    ;; This is the coloring of the selection region
-    (face-spec-set 'region
-                   '((((class color) (background light))
-                      (                 ;:foreground "blue"
-                       :background "color-17"
-                       :strike-through nil
-                       :underline nil))
-                     (t (:foreground "purple"
-                                     :background "unspecified"
-                                     :strike-through nil
-                                     :underline t))))
-    ;; The idle-highlight is used by starter-kit... I think.
-    (face-spec-set 'idle-highlight
-                   '((((class color) (background light))
-                      (                 ;:foreground "black"
-                       :background "gray25"
-                       :strike-through nil
-                       :underline nil))
-                     (t (:foreground "purple"
-                                     :background "unspecified"
-                                     :strike-through nil
-                                     :underline t))))
-    ;; The idle-highlight is used by starter-kit... I think.
-    (face-spec-set 'show-paren-match
-                   '((((class color) (background light))
-                      (:foreground "yellow"
-                                   :background nil
-                                   :bold t
-                                   :strike-through nil
-                                   :underline nil))
-                     (t (:foreground "purple"
-                                     :background "unspecified"
-                                     :strike-through nil
-                                     :underline t))))
-    ;; This makes our trailing whitespace actually visible
-    (face-spec-set 'trailing-whitespace
-                   '((((class color) (background light))
-                      (                 ;:foreground "red"
-                       :background "red"
-                       :strike-through nil
-                       :underline nil))
-                     (t (               ;:foreground "red"
-                         :background "red"
-                         :strike-through nil
-                         :underline nil))))))
+;;(if window-system
+;;    (progn  ; Non-terminal adjustments
+;;      )
+;;
+;;  (progn    ; Terminal adjustments
+;;    ;; The light colored hl-line is fine for GUI emacs but
+;;    ;; makes
+;;    ;; it impossible to read things in a white-on-black
+;;    ;; terminal
+;;    (defadvice hl-line-mode (after
+;;                             abrooks-advise-hl-line-mode
+;;                             activate compile)
+;;      (set-face-background hl-line-face "white"))
+;;
+;;    ;; This is the coloring of the selection region
+;;    (face-spec-set 'region
+;;                   '((((class color) (background light))
+;;                      (                 ;:foreground "blue"
+;;                       :background "color-17"
+;;                       :strike-through nil
+;;                       :underline nil))
+;;                     (t (:foreground "purple"
+;;                                     :background "unspecified"
+;;                                     :strike-through nil
+;;                                     :underline t))))
+;;    ;; The idle-highlight is used by starter-kit... I think.
+;;    (face-spec-set 'idle-highlight
+;;                   '((((class color) (background light))
+;;                      (                 ;:foreground "black"
+;;                       :background "gray25"
+;;                       :strike-through nil
+;;                       :underline nil))
+;;                     (t (:foreground "purple"
+;;                                     :background "unspecified"
+;;                                     :strike-through nil
+;;                                     :underline t))))
+;;    ;; The idle-highlight is used by starter-kit... I think.
+;;    (face-spec-set 'show-paren-match
+;;                   '((((class color) (background light))
+;;                      (:foreground "yellow"
+;;                                   :background nil
+;;                                   :bold t
+;;                                   :strike-through nil
+;;                                   :underline nil))
+;;                     (t (:foreground "purple"
+;;                                     :background "unspecified"
+;;                                     :strike-through nil
+;;                                     :underline t))))
+;;    ;; This makes our trailing whitespace actually visible
+;;    (face-spec-set 'trailing-whitespace
+;;                   '((((class color) (background light))
+;;                      (                 ;:foreground "red"
+;;                       :background "red"
+;;                       :strike-through nil
+;;                       :underline nil))
+;;                     (t (               ;:foreground "red"
+;;                         :background "red"
+;;                         :strike-through nil
+;;                         :underline nil))))))
 
 ;; prevent extraneous tabs
 (setq-default tab-width 4)
