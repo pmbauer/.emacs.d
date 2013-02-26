@@ -117,13 +117,11 @@
     (progn  ; Non-terminal adjustments
       )
 
-  (progn    ; Terminal adjustments
+  (progn
     ;; The light colored hl-line is fine for GUI emacs but makes
     ;; it impossible to read things in a white-on-black terminal
-    (defadvice hl-line-mode (after
-                             abrooks-advise-hl-line-mode
-                             activate compile)
-      (set-face-background hl-line-face "white"))))
+    (remove-hook 'prog-mode-hook 'esk-turn-on-hl-line-mode)))
+
 
 ;; prevent extraneous tabs
 (setq-default tab-width 4)
