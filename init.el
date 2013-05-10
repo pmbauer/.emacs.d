@@ -7,7 +7,7 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-(defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings slime slime-repl undo-tree clojure-mode clojure-test-mode color-theme-solarized haskell-mode auto-complete ac-nrepl))
+(defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings slime slime-repl undo-tree clojure-mode clojure-test-mode slamhound color-theme-solarized haskell-mode auto-complete ac-nrepl))
 (dolist (p my-packages)
   (when (not (package-installed-p p))
     (package-install p)))
@@ -85,7 +85,7 @@
 ;(define-key evil-normal-state-map (kbd "C-x M-x") 'slime-send-dwim)
 
 ;; nrepl
-(setq nrepl-popup-stacktraces nil)
+;(setq nrepl-popup-stacktraces nil)
 (add-hook 'nrepl-mode-hook 'paredit-mode)
 ; autocomplete
 (require 'ac-nrepl)
