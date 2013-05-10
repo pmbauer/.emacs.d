@@ -80,6 +80,8 @@
 (define-key evil-normal-state-map (kbd "M-,") 'nrepl-jump-back)
 (define-key evil-normal-state-map (kbd "M-.") 'nrepl-jump)
 (define-key evil-normal-state-map (kbd "C-x M-x") 'nrepl-send-dwim)
+(define-key evil-normal-state-map (kbd "C-x M-d") 'paredit-duplicate-after-point)
+
 ;(define-key evil-normal-state-map (kbd "M-,") 'slime-pop-find-definition-stack)
 ;(define-key evil-normal-state-map (kbd "M-.") 'slime-edit-definition)
 ;(define-key evil-normal-state-map (kbd "C-x M-x") 'slime-send-dwim)
