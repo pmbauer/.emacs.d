@@ -41,8 +41,11 @@
 
 ;; lonopair
 (require 'lonopair)
+
 (defun lono-slime-hook-function ()
-  (local-set-key (kbd "C-c C-s") 'nrepl-send-dwim))
+  (local-set-key (kbd "C-x M-x") 'nrepl-send-dwim))
+
+(add-hook 'nrepl-interaction-mode-hook 'lono-nrepl-hook-function)
 
 (defun paredit-wrap-round-from-behind ()
   (interactive)
@@ -77,7 +80,7 @@
 (defun nrepl-refresh ()
   (interactive)
   (evil-write-all nil)
-  (set-buffer "*nrepl*")
+  (nrepl-switch-to-repl-buffer nil)
   (goto-char (point-max))
   (insert "(clojure.tools.namespace.repl/refresh)")
   (nrepl-return))
@@ -85,7 +88,7 @@
 (defun nrepl-reset ()
   (interactive)
   (evil-write-all nil)
-  (set-buffer "*nrepl*")
+  (nrepl-switch-to-repl-buffer nil)
   (goto-char (point-max))
   (insert "(user/reset)")
   (nrepl-return))
