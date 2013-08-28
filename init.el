@@ -16,7 +16,6 @@
              undo-tree
              clojure-mode
              clojure-test-mode
-             ;slamhound
              color-theme-solarized
              haskell-mode
              markdown-mode
@@ -142,8 +141,6 @@
 (require 'revive)
 
 ;; clojure related
-(require 'slamhound)
-
 (setq auto-mode-alist (cons '("\\.txn$" . clojure-mode) auto-mode-alist))
 
 ;; elm related
