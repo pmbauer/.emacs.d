@@ -42,7 +42,7 @@
 ;; lonopair
 (require 'lonopair)
 
-(defun lono-slime-hook-function ()
+(defun lono-nrepl-hook-function ()
   (local-set-key (kbd "C-x M-x") 'nrepl-send-dwim))
 
 (add-hook 'nrepl-interaction-mode-hook 'lono-nrepl-hook-function)
@@ -71,7 +71,7 @@
 (define-key evil-normal-state-map (kbd "M-]") 'find-tag)
 (define-key evil-normal-state-map (kbd "M-,") 'nrepl-jump-back)
 (define-key evil-normal-state-map (kbd "M-.") 'nrepl-jump)
-(define-key evil-normal-state-map (kbd "C-x M-x") 'nrepl-send-dwim)
+;(define-key evil-normal-state-map (kbd "C-x M-x") 'nrepl-send-dwim)
 ;(define-key evil-normal-state-map (kbd "M-,") 'slime-pop-find-definition-stack)
 ;(define-key evil-normal-state-map (kbd "M-.") 'slime-edit-definition)
 ;(define-key evil-normal-state-map (kbd "C-x M-x") 'slime-send-dwim)
