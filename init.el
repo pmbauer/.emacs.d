@@ -2,13 +2,26 @@
 (require 'package)
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
 (package-initialize)
 
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-(defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings slime slime-repl undo-tree clojure-mode clojure-test-mode slamhound color-theme-solarized haskell-mode auto-complete ac-nrepl))
-(dolist (p my-packages)
+(dolist (p '(starter-kit
+             starter-kit-lisp
+             starter-kit-bindings
+             undo-tree
+             clojure-mode
+             clojure-test-mode
+             ;slamhound
+             color-theme-solarized
+             haskell-mode
+             markdown-mode
+             auto-complete
+             ac-nrepl))
   (when (not (package-installed-p p))
     (package-install p)))
 
@@ -32,28 +45,6 @@
 (defun lono-slime-hook-function ()
   (local-set-key (kbd "C-c C-s") 'nrepl-send-dwim))
 
-;; paredit tweaks
-(defun paredit-duplicate-after-point
-  ()
-  "Duplicates the content of the line that is after the point."
-  (interactive)
-  ;; skips to the next sexp
-  (while (looking-at " ")
-    (forward-char))
-  (set-mark-command nil)
-  ;; while we find sexps we move forward on the line
-  (while (and (bounds-of-thing-at-point 'sexp)
-              (<= (point) (car (bounds-of-thing-at-point 'sexp)))
-              (not (= (point) (line-end-position))))
-    (forward-sexp)
-    (while (looking-at " ")
-      (forward-char)))
-  (kill-ring-save (mark) (point))
-  ;; go to the next line and copy the sexprs we encountered
-  (paredit-newline)
-  (yank)
-  (exchange-point-and-mark))
-
 (defun paredit-wrap-round-from-behind ()
   (interactive)
   (forward-sexp -1)
@@ -69,7 +60,6 @@
      ;;(define-key paredit-mode-map (kbd "C-c (") 'paredit-backward-barf-sexp)
      ;;(define-key paredit-mode-map (kbd "M-R") 'paredit-raise-sexp)
      ;;(define-key paredit-mode-map (kbd "C-k") 'paredit-eager-kill-line)
-     (define-key paredit-mode-map (kbd "C-S-d") 'paredit-duplicate-after-point)
      ;;(define-key paredit-mode-map (kbd "M-)") 'paredit-wrap-round-from-behind)
      ))
 
@@ -80,15 +70,31 @@
 (define-key evil-normal-state-map (kbd "M-,") 'nrepl-jump-back)
 (define-key evil-normal-state-map (kbd "M-.") 'nrepl-jump)
 (define-key evil-normal-state-map (kbd "C-x M-x") 'nrepl-send-dwim)
-(define-key evil-normal-state-map (kbd "C-x M-d") 'paredit-duplicate-after-point)
-
 ;(define-key evil-normal-state-map (kbd "M-,") 'slime-pop-find-definition-stack)
 ;(define-key evil-normal-state-map (kbd "M-.") 'slime-edit-definition)
 ;(define-key evil-normal-state-map (kbd "C-x M-x") 'slime-send-dwim)
 
 ;; nrepl
-;(setq nrepl-popup-stacktraces nil)
+(defun nrepl-refresh ()
+  (interactive)
+  (evil-write-all nil)
+  (set-buffer "*nrepl*")
+  (goto-char (point-max))
+  (insert "(clojure.tools.namespace.repl/refresh)")
+  (nrepl-return))
+
+(defun nrepl-reset ()
+  (interactive)
+  (evil-write-all nil)
+  (set-buffer "*nrepl*")
+  (goto-char (point-max))
+  (insert "(user/reset)")
+  (nrepl-return))
+
+(setq nrepl-popup-stacktraces nil)
+
 (add-hook 'nrepl-mode-hook 'paredit-mode)
+
 ; autocomplete
 (require 'ac-nrepl)
  (add-hook 'nrepl-mode-hook 'ac-nrepl-setup)
@@ -137,6 +143,7 @@
 
 ;; clojure related
 (require 'slamhound)
+
 (setq auto-mode-alist (cons '("\\.txn$" . clojure-mode) auto-mode-alist))
 
 ;; elm related
