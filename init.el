@@ -75,21 +75,23 @@
 ;(define-key evil-normal-state-map (kbd "C-x M-x") 'slime-send-dwim)
 
 ;; nrepl
-(defun nrepl-refresh ()
+
+(defun nrepl-exec-interactive (cmd)
   (interactive)
   (evil-write-all nil)
   (nrepl-switch-to-repl-buffer nil)
   (goto-char (point-max))
-  (insert "(clojure.tools.namespace.repl/refresh)")
-  (nrepl-return))
+  (insert cmd)
+  (nrepl-return)
+  (other-window -1))
+
+(defun nrepl-refresh ()
+  (interactive)
+  (nrepl-exec-interactive "(clojure.tools.namespace.repl/refresh)"))
 
 (defun nrepl-reset ()
   (interactive)
-  (evil-write-all nil)
-  (nrepl-switch-to-repl-buffer nil)
-  (goto-char (point-max))
-  (insert "(user/reset)")
-  (nrepl-return))
+  (nrepl-exec-interactive "(user/reset)"))
 
 (setq nrepl-popup-stacktraces nil)
 
