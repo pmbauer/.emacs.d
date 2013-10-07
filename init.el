@@ -155,11 +155,12 @@
 (defun nrepl-exec-interactive (cmd)
   (interactive)
   (evil-write-all nil)
-  (nrepl-switch-to-repl-buffer nil)
-  (goto-char (point-max))
-  (insert cmd)
-  (nrepl-return)
-  (other-window -1))
+  (let ((current-window (selected-window)))
+    (nrepl-switch-to-repl-buffer nil)
+    (goto-char (point-max))
+    (insert cmd)
+    (nrepl-return)
+    (select-window current-window)))
 
 (defun nrepl-refresh ()
   (interactive)
@@ -221,6 +222,7 @@
 
 ;; clojure related
 (setq auto-mode-alist (cons '("\\.txn$" . clojure-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.edn$" . clojure-mode) auto-mode-alist))
 
 ;; elm related
 (setq auto-mode-alist (cons '("\\.elm$" . haskell-mode) auto-mode-alist))
