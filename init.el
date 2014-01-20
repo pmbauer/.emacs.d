@@ -24,8 +24,6 @@
     (package-install p)))
 
 ;; load-path extensions
-(add-to-list 'load-path "~/.emacs.d/evil/lib")
-(add-to-list 'load-path "~/.emacs.d/evil")
 (add-to-list 'load-path "~/.emacs.d/extras")
 (add-to-list 'load-path "~/.emacs.d/color-theme")
 (add-to-list 'load-path "/opt/lono-dev-env/emacs")
@@ -169,7 +167,7 @@
 
 (defun nrepl-reset ()
   (interactive)
-  (nrepl-exec-interactive "(user/reset)"))
+  (nrepl-exec-interactive "(dev/reset)"))
 
 (setq nrepl-popup-stacktraces nil)
 (setq nrepl-history-file "~/.nrepl-history.eld")
@@ -225,9 +223,19 @@
 ;; setup revive
 (require 'revive)
 
-;; clojure related
+;; clojure-mode
+(require 'clojure-mode)
+(put-clojure-indent 'match 1)
+(put-clojure-indent 'handler 1)
+(put 'for-map 'clojure-backtracking-indent '((2) 2))
+(put 'for-all* 'clojure-backtracking-indent '((2) 2))
+(put 'for-all 'clojure-backtracking-indent '((2) 2))
+(put 'fnk 'clojure-backtracking-indent '((2) 2))
+
 (setq auto-mode-alist (cons '("\\.txn$" . clojure-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.edn$" . clojure-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.cljx$" . clojure-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.cljs.hl$" . clojure-mode) auto-mode-alist))
 
 ;; elm related
 (setq auto-mode-alist (cons '("\\.elm$" . haskell-mode) auto-mode-alist))
