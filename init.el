@@ -14,7 +14,6 @@
              undo-tree
              clojure-mode
              clojure-test-mode
-             color-theme-solarized
              haskell-mode
              markdown-mode
              auto-complete
@@ -197,8 +196,7 @@
 (eval-after-load "color-theme"
   '(progn
      (color-theme-initialize)
-     (color-theme-solarized-light)
-     ))
+     (load-theme 'manoj-dark)))
 
 (set-default-font "Ubuntu Mono-11")
 (blink-cursor-mode)
